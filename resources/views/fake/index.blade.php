@@ -26,7 +26,7 @@
 
 
 <div class="ui grid">
-<div class="four wide collumn column"></div>
+	<div class="four wide collumn column"></div>
 	<div class="height wide collumn column">
 		<div class="ui fluid card">
 			<div class="content">
@@ -64,7 +64,7 @@
 						<div class="content">
 							<div class="summary">
 								{{$dateFakes}}
-						
+
 
 							</div>
 						</div>
@@ -82,16 +82,21 @@
 					<div class="event">
 						<div class="content">
 							<div class="summary">
-							{{$fakers->text}}
+								{{$fakers->text}}
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<div class="extra content">
+			<a href="/profil" class="ui button">Get link</a>
+			</div>
 		</div>
 	</div>
 </div>
-
+<span>
+	{{$fakers->seed()}}
+</span>
 
 @stop
 
