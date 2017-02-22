@@ -22,12 +22,15 @@
 		<span>générateur de profil aleatoire</span>
 	</div>
 </div>
+
+
+
 <div class="ui grid">
 <div class="four wide collumn column"></div>
 	<div class="height wide collumn column">
 		<div class="ui fluid card">
 			<div class="content">
-				<div class="header">Nom - prenom</div>
+				<div class="header">{{$fakers->name}}</div>
 			</div>
 			<div class="content">
 				<div class="ui small feed">
@@ -35,7 +38,7 @@
 					<div class="event">
 						<div class="content">
 							<div class="summary">
-								adresse
+								{{$fakers->address}}
 							</div>
 						</div>
 					</div>
@@ -43,7 +46,8 @@
 					<div class="event">
 						<div class="content">
 							<div class="summary">
-								mail@mail.mail
+								{{$fakers->freeEmail}}
+
 							</div>
 						</div>
 					</div>
@@ -51,7 +55,7 @@
 					<div class="event">
 						<div class="content">
 							<div class="summary">
-								0.40.40.40.4
+								{{$fakers->phoneNumber}}
 							</div>
 						</div>
 					</div>
@@ -59,7 +63,9 @@
 					<div class="event">
 						<div class="content">
 							<div class="summary">
-								25/04/1996
+								{{$dateFakes}}
+						
+
 							</div>
 						</div>
 					</div>
@@ -67,7 +73,8 @@
 					<div class="event">
 						<div class="content">
 							<div class="summary">
-								20 ans
+								{{$ages}}
+
 							</div>
 						</div>
 					</div>
@@ -75,7 +82,7 @@
 					<div class="event">
 						<div class="content">
 							<div class="summary">
-							
+							{{$fakers->text}}
 							</div>
 						</div>
 					</div>
@@ -85,6 +92,6 @@
 	</div>
 </div>
 
-@stop
 
+@stop
 
