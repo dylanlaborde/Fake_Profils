@@ -15,3 +15,6 @@
 //     return view('fake.index');
 // });
 Route::get('/','FakeController@getIndex');
+Route::get('/profil',function(){
+	require '../public/profil.json';
+});
