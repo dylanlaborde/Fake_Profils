@@ -3,51 +3,60 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 require_once '../vendor/fzaninotto/faker/src/autoload.php';
 use Faker;
 
 class FakeController extends Controller
 {
+	private $faker;
+	private $data;
 
 	public function __construct(){
-
+		$this->faker=Faker\Factory::create('fr_FR');
+		$this->data =self::dataFacker();
+		
 	}
 	public function getIndex(){
-		$faker = Faker\Factory::create('fr_FR');
-		$faker->seed();
-		$dateFake = $faker->date($format = 'Y-m-d', $max = 'now');
+		// dd($this->data);
+		return view('fake.index',$this->data);
+	}
+	public function Refresh(){
+		return back();
+	}
+	public function dataFacker(){
+		$faker = $this->faker;
+		/*Initialisation de la date actuel et la date fictive*/
 		$dateNow = date('Y-m-d');
-
+		$dateFake = $faker->date($format = 'Y-m-d', $max = '2000-01-01');
+		/*Initialisation des date pour le calcule de l'age*/
 		$datetimeFake = date_create($dateFake);
 		$datetimeNow = date_create($dateNow);
+		/*calcule de l'age*/
 		$interval = date_diff($datetimeFake, $datetimeNow);
 		$age = $interval->format('%y ans');
-		
-		// echo mt_srand((int) 242);
-		$fakeToJson = ['name'=>$faker->name,'address'=>$faker->address,'email'=>$faker->freeEmail,'birth'=>$dateFake,'old'=>$age,'text'=>$faker->text];
-		
- 
-		$fakeJson =json_encode($fakeToJson);
-
-		// dd($fakeJson);
-
-		// require '../composer.json';
-		// var_dump($fakeJson);		
-		// $test = json_decode($fakeJson);
-		// dd($test);
-		$fileName = 'profil.json';
-		$testToJSon=fopen($fileName, 'w+');
-		fwrite($testToJSon, $fakeJson);
-		fclose($testToJSon);
+		/*generation des valeur de fackeur*/
+		$name = $faker->name;
+		$address = $faker->address;
+		$mail  = $faker->freeEmail;
+		$phone = $faker->phoneNumber;
+		$text = $faker->text;
+		/*on recupere toute les valeur*/
+		$data = ['name'=>$name,'address'=>$address,'email'=>$mail,'phone'=>$phone,'birth'=>$dateFake,'old'=>$age,'text'=>$text,];
 
 		
-		
-		
-		
-		
-		return view('fake.index',['fakers'=>$faker,'dateFakes'=>$dateFake,'ages'=>$age]);
+		return $data;
 	}
-
+	public function makeDataToJson(Request $request){
+		$input = $request->only('name','address','mail','phone','birth','old','text');
+		
+		$fakeJson =json_encode($input);
+		$fileName = 'profil.json';
+		$fileToJSon=fopen($fileName, 'w+');
+		fwrite($fileToJSon, $fakeJson);
+		fclose($fileToJSon);
+		dd($fakeJson);
+	}
 
 }
