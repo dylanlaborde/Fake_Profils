@@ -26,77 +26,105 @@
 
 
 <div class="ui grid">
-	<div class="four wide collumn column"></div>
+	<div class="four wide collumn column">
+		<a href="/refresh" class="ui button">Générer un nouveau profil</a>
+	</div>
+
 	<div class="height wide collumn column">
-		<div class="ui fluid card">
-			<div class="content">
-				<div class="header">{{$fakers->name}}</div>
-			</div>
-			<div class="content">
-				<div class="ui small feed">
-					<h4 class="header">Adresse</h4>
-					<div class="event">
-						<div class="content">
-							<div class="summary">
-								{{$fakers->address}}
-							</div>
-						</div>
-					</div>
-					<h4 class="ui sub header">Mail</h4>
-					<div class="event">
-						<div class="content">
-							<div class="summary">
-								{{$fakers->freeEmail}}
+		<form action="/profil" method="post">
+			<div class="ui fluid card">
+				<div class="content">
+					<div class="header">{{$name}}</div>
+					<input type="hidden" name="_token" value="{{ csrf_token() }}">
+					<input type="hidden" name="name" value="{{$name}}">
 
-							</div>
-						</div>
-					</div>
-					<h4 class="ui sub header">Téléphone</h4>
-					<div class="event">
-						<div class="content">
-							<div class="summary">
-								{{$fakers->phoneNumber}}
-							</div>
-						</div>
-					</div>
-					<h4 class="ui sub header">Date de naissance</h4>
-					<div class="event">
-						<div class="content">
-							<div class="summary">
-								{{$dateFakes}}
+				</div>
+				<div class="content">
+					<div class="ui small feed">
+						<h4 class="header">Adresse</h4>
+						<div class="event">
+							<div class="content">
+								<div class="summary">{{$address}}</div>
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+								<input type="hidden" name="address" value="{{$address}}">
 
 
 							</div>
 						</div>
-					</div>
-					<h4 class="ui sub header">Âge</h4>
-					<div class="event">
-						<div class="content">
-							<div class="summary">
-								{{$ages}}
+						<h4 class="ui sub header">Mail</h4>
+						<div class="event">
+							<div class="content">
+								<div class="summary">
+									{{$email}}
+								</div>
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+								<input type="hidden" name="mail" value="{{$email}}">
+
 
 							</div>
 						</div>
-					</div>
-					<h4 class="ui sub header">Description</h4>
-					<div class="event">
-						<div class="content">
-							<div class="summary">
-								{{$fakers->text}}
+						<h4 class="ui sub header">Téléphone</h4>
+						<div class="event">
+							<div class="content">
+								<div class="summary">
+									{{$phone}}
+								</div>
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+								<input type="hidden" name="phone" value="{{$phone}}">
+
+
+							</div>
+						</div>
+						<h4 class="ui sub header">Date de naissance</h4>
+						<div class="event">
+							<div class="content">
+								<div class="summary">
+									{{$birth}}
+
+
+								</div>
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+								<input type="hidden" name="birth" value="{{$birth}}">
+
+
+							</div>
+						</div>
+						<h4 class="ui sub header">Âge</h4>
+						<div class="event">
+							<div class="content">
+								<div class="summary">
+									{{$old}}
+
+								</div>
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+								<input type="hidden" name="old" value="{{$old}}">
+
+
+							</div>
+						</div>
+						<h4 class="ui sub header">Description</h4>
+						<div class="event">
+							<div class="content">
+								<div class="summary">
+									{{$text}}
+								</div>
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+								<input type="hidden" name="text" value="{{$text}}">
+								
+
 							</div>
 						</div>
 					</div>
 				</div>
+				<div class="extra content">
+					<button type="submit" class="ui positive button">Get link</button>
+
+				</div>
 			</div>
-			<div class="extra content">
-			<a href="/profil" class="ui button">Get link</a>
-			</div>
-		</div>
+		</form>
 	</div>
 </div>
-<span>
-	{{$fakers->seed()}}
-</span>
+
 
 @stop
 
