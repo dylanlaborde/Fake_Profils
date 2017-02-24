@@ -23,20 +23,24 @@
 	</div>
 </div>
 
-
-
 <div class="ui grid">
 	<div class="four wide collumn column">
-		<a href="/refresh" class="ui button">Générer un nouveau profil</a>
+		<form action="/api/refresh" method="post" id="refresh">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+			<button class="ui button" id="generate" type="submit">
+				Générer un nouveau profil
+			</button>
+
+		</form>
 	</div>
 
 	<div class="height wide collumn column">
-		<form action="/profil" method="post">
+		<form action="/api/profil" id="json" method="get">
 			<div class="ui fluid card">
 				<div class="content">
 					<div class="header">{{$name}}</div>
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-					<input type="hidden" name="name" value="{{$name}}">
+					<input type="hidden" name="name" value="{{$name}}" data-value="{{$name}}">
 
 				</div>
 				<div class="content">
@@ -110,21 +114,19 @@
 								</div>
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 								<input type="hidden" name="text" value="{{$text}}">
-								
+
 
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="extra content">
-					<button type="submit" class="ui positive button">Get link</button>
-
+				<a href="http://127.0.0.1:8000/api/profil/{{$seed}}" class="ui positive button">Get Json</a>
 				</div>
 			</div>
 		</form>
 	</div>
 </div>
-
-
 @stop
+
 
