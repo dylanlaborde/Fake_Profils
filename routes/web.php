@@ -10,12 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('fake.index');
-// });
 Route::get('/','FakeController@getIndex');
 
-Route::get('/refresh','FakeController@Refresh');
-Route::post('/profil','FakeController@makeDataToJson');
+// Route::post('/refresh','FakeController@Refresh');
+ // Route::post('/profil','FakeController@makeDataToJson');
 
